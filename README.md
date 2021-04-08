@@ -1,2 +1,3 @@
-# segmented_least_square
-Implementing Segmented least square algorithm using C++
+# Segmented Least Squares
+
+Implementing Segmented least square algorithm in C++
