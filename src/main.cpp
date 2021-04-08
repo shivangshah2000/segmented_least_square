@@ -20,10 +20,13 @@ int main() {
   int N = 0, C, i, j, interval_len, x, y, k;
   cout << "Enter points in file input.txt" << endl;
 
+  /**
+  * Reading Input and adding points
+  */
   string str;
   vector<pair<int, int>> points;
   points.push_back(
-      {INT_MIN, INT_MIN});  // adding dummy value so that indexing starts with 1
+      {INT_MIN, INT_MIN});  
   pair<int, int> s;
   ifstream InputRead("input.txt");
   while (getline(InputRead, str)) {
@@ -33,19 +36,25 @@ int main() {
   }
   InputRead.close();
 
-  // penalty value :- C
+
   cout << "Enter C: ";
   cin >> C;
 
-  // sorting the points on basis of x axis
+  /**
+  * Sorting the points on basis of x axis
+  */
+  
   sort(points.begin(), points.end());
 
   double slope[N + 1][N + 1], intercept[N + 1][N + 1], E[N + 1][N + 1] = {0};
   int cumx[N + 1], cumy[N + 1], cumxy[N + 1],
       cumxsqr[N + 1];  // cummulative arrays to store summation value
   cumx[0] = cumy[0] = cumxy[0] = cumxsqr[0] = 0;
-
-  // finding error values for each segment
+ 
+  /**
+  * Finding error values for each segment
+  */
+  
   int x_seg_sum, y_seg_sum, xy_seg_sum, xsqr_seg_sum;
   for (j = 1; j <= N; j++) {
     cumx[j] = cumx[j - 1] + points[j].first;
@@ -74,7 +83,11 @@ int main() {
       }
     }
   }
-
+  
+  /**
+  * Dynamic Programming to find the minimum cost
+  */
+  
   double OPT[N + 1];
   for (i = 1; i <= N; i++) {
     OPT[i] = INT_MAX;
@@ -94,7 +107,11 @@ int main() {
     optimal_segment[j] = seg;
     OPT[j] = temp;
   }
-
+  
+  /**
+  * Printing points the line segment will cover and the error value 
+  */
+  
   stack<int> temp_stack;
   for (i = N, j = optimal_segment[N]; i > 0;
        i = j - 1, j = optimal_segment[i]) {
@@ -123,12 +140,16 @@ int main() {
     cout << "Error associated with above line segment is : " << E[i][j] << endl
          << endl;
   }
-
+  
+  /**
+  * Printing Optimal Value
+  */
+  
   cout << "The optimal number of segments created : " << seg_count << endl;
   cout << "Optimal value is : " << OPT[N] << endl << endl;
 
   outfile << "#" << endl;
-  outfile << OPT[N] << endl;  // error value
+  outfile << OPT[N] << endl;  
 
   outfile.close();
 }
