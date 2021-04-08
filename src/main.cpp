@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/**
+* Converting string of points into integer pair 
+*/
+
 pair<int, int> splitstring(string str) {
   string s;
   pair<int, int> ret;
