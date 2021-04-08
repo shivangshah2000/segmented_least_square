@@ -23,6 +23,7 @@ int main() {
   /**
   * Reading Input and adding points
   */
+  
   string str;
   vector<pair<int, int>> points;
   points.push_back(
