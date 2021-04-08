@@ -14,5 +14,3 @@ for i in range(n):
     f.write(inpstr)
 
 f.close()
-print("Console kya ghur rha h, input.txt dekho BC!")
-    
